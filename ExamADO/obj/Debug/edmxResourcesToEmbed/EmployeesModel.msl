@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyEmployeesModelStoreContainer" CdmEntityContainer="MyEmployeesEntities">
+    <EntitySetMapping Name="Втемя_роботы_сотрудника">
+      <EntityTypeMapping TypeName="MyEmployeesModel.Втемя_роботы_сотрудника">
+        <MappingFragment StoreEntitySet="Втемя роботы сотрудника">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="id_Сотрудника" ColumnName="id_Сотрудника" />
+          <ScalarProperty Name="Начало_работы" ColumnName="Начало работы" />
+          <ScalarProperty Name="Окончание_работы" ColumnName="Окончание работы" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Принятие_на_работу">
+      <EntityTypeMapping TypeName="MyEmployeesModel.Принятие_на_работу">
+        <MappingFragment StoreEntitySet="Принятие на работу">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Дата_принятия_на_работу" ColumnName="Дата принятия на работу" />
+          <ScalarProperty Name="id_Сотрудника" ColumnName="id_Сотрудника" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Сотрудники">
+      <EntityTypeMapping TypeName="MyEmployeesModel.Сотрудники">
+        <MappingFragment StoreEntitySet="Сотрудники">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Дата_рождения" ColumnName="Дата рождения" />
+          <ScalarProperty Name="Должность" ColumnName="Должность" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Увольнение">
+      <EntityTypeMapping TypeName="MyEmployeesModel.Увольнение">
+        <MappingFragment StoreEntitySet="Увольнение">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Дата_увольнения" ColumnName="Дата увольнения" />
+          <ScalarProperty Name="id_Сотрудника" ColumnName="id_Сотрудника" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Фотогафии_Сотрудников">
+      <EntityTypeMapping TypeName="MyEmployeesModel.Фотогафии_Сотрудников">
+        <MappingFragment StoreEntitySet="Фотогафии_Сотрудников">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="id_Сотрудника" ColumnName="id_Сотрудника" />
+          <ScalarProperty Name="Фото" ColumnName="Фото" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

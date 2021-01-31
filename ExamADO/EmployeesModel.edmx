@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MyEmployeesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Втемя роботы сотрудника">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="id_Сотрудника" Type="int" Nullable="false" />
+          <Property Name="Начало работы" Type="datetime" Nullable="false" />
+          <Property Name="Окончание работы" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Принятие на работу">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Дата принятия на работу" Type="date" Nullable="false" />
+          <Property Name="id_Сотрудника" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Дата рождения" Type="date" Nullable="false" />
+          <Property Name="Должность" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Увольнение">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Дата увольнения" Type="date" Nullable="false" />
+          <Property Name="id_Сотрудника" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Фотогафии_Сотрудников">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="id_Сотрудника" Type="int" Nullable="false" />
+          <Property Name="Фото" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Втемя роб__id_Со__2E1BDC42">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Втемя роботы сотрудника" Type="Self.Втемя роботы сотрудника" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Втемя роботы сотрудника">
+              <PropertyRef Name="id_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Принятие __id_Со__286302EC">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Принятие на работу" Type="Self.Принятие на работу" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Принятие на работу">
+              <PropertyRef Name="id_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Увольнени__id_Со__2B3F6F97">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Увольнение" Type="Self.Увольнение" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Увольнение">
+              <PropertyRef Name="id_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Фотогафии__id_Со__25869641">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Фотогафии_Сотрудников" Type="Self.Фотогафии_Сотрудников" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Фотогафии_Сотрудников">
+              <PropertyRef Name="id_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyEmployeesModelStoreContainer">
+          <EntitySet Name="Втемя роботы сотрудника" EntityType="Self.Втемя роботы сотрудника" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Принятие на работу" EntityType="Self.Принятие на работу" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Увольнение" EntityType="Self.Увольнение" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Фотогафии_Сотрудников" EntityType="Self.Фотогафии_Сотрудников" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Втемя роб__id_Со__2E1BDC42" Association="Self.FK__Втемя роб__id_Со__2E1BDC42">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Втемя роботы сотрудника" EntitySet="Втемя роботы сотрудника" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Принятие __id_Со__286302EC" Association="Self.FK__Принятие __id_Со__286302EC">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Принятие на работу" EntitySet="Принятие на работу" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Увольнени__id_Со__2B3F6F97" Association="Self.FK__Увольнени__id_Со__2B3F6F97">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Увольнение" EntitySet="Увольнение" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Фотогафии__id_Со__25869641" Association="Self.FK__Фотогафии__id_Со__25869641">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Фотогафии_Сотрудников" EntitySet="Фотогафии_Сотрудников" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyEmployeesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Втемя_роботы_сотрудника">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="id_Сотрудника" Type="Int32" Nullable="false" />
+          <Property Name="Начало_работы" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Окончание_работы" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Втемя_роб__id_Со__2E1BDC42" FromRole="Втемя_роботы_сотрудника" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Принятие_на_работу">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Дата_принятия_на_работу" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_Сотрудника" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Принятие___id_Со__286302EC" FromRole="Принятие_на_работу" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Должность" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Втемя_роботы_сотрудника" Relationship="Self.FK__Втемя_роб__id_Со__2E1BDC42" FromRole="Сотрудники" ToRole="Втемя_роботы_сотрудника" />
+          <NavigationProperty Name="Принятие_на_работу" Relationship="Self.FK__Принятие___id_Со__286302EC" FromRole="Сотрудники" ToRole="Принятие_на_работу" />
+          <NavigationProperty Name="Увольнение" Relationship="Self.FK__Увольнени__id_Со__2B3F6F97" FromRole="Сотрудники" ToRole="Увольнение" />
+          <NavigationProperty Name="Фотогафии_Сотрудников" Relationship="Self.FK__Фотогафии__id_Со__25869641" FromRole="Сотрудники" ToRole="Фотогафии_Сотрудников" />
+        </EntityType>
+        <EntityType Name="Увольнение">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Дата_увольнения" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_Сотрудника" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Увольнени__id_Со__2B3F6F97" FromRole="Увольнение" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Фотогафии_Сотрудников">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="id_Сотрудника" Type="Int32" Nullable="false" />
+          <Property Name="Фото" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Фотогафии__id_Со__25869641" FromRole="Фотогафии_Сотрудников" ToRole="Сотрудники" />
+        </EntityType>
+        <Association Name="FK__Втемя_роб__id_Со__2E1BDC42">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Втемя_роботы_сотрудника" Type="Self.Втемя_роботы_сотрудника" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Втемя_роботы_сотрудника">
+              <PropertyRef Name="id_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Принятие___id_Со__286302EC">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Принятие_на_работу" Type="Self.Принятие_на_работу" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Принятие_на_работу">
+              <PropertyRef Name="id_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Увольнени__id_Со__2B3F6F97">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Увольнение" Type="Self.Увольнение" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Увольнение">
+              <PropertyRef Name="id_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Фотогафии__id_Со__25869641">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Фотогафии_Сотрудников" Type="Self.Фотогафии_Сотрудников" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Фотогафии_Сотрудников">
+              <PropertyRef Name="id_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyEmployeesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Втемя_роботы_сотрудника" EntityType="Self.Втемя_роботы_сотрудника" />
+          <EntitySet Name="Принятие_на_работу" EntityType="Self.Принятие_на_работу" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+          <EntitySet Name="Увольнение" EntityType="Self.Увольнение" />
+          <EntitySet Name="Фотогафии_Сотрудников" EntityType="Self.Фотогафии_Сотрудников" />
+          <AssociationSet Name="FK__Втемя_роб__id_Со__2E1BDC42" Association="Self.FK__Втемя_роб__id_Со__2E1BDC42">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Втемя_роботы_сотрудника" EntitySet="Втемя_роботы_сотрудника" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Принятие___id_Со__286302EC" Association="Self.FK__Принятие___id_Со__286302EC">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Принятие_на_работу" EntitySet="Принятие_на_работу" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Увольнени__id_Со__2B3F6F97" Association="Self.FK__Увольнени__id_Со__2B3F6F97">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Увольнение" EntitySet="Увольнение" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Фотогафии__id_Со__25869641" Association="Self.FK__Фотогафии__id_Со__25869641">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Фотогафии_Сотрудников" EntitySet="Фотогафии_Сотрудников" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyEmployeesModelStoreContainer" CdmEntityContainer="MyEmployeesEntities">
+          <EntitySetMapping Name="Втемя_роботы_сотрудника">
+            <EntityTypeMapping TypeName="MyEmployeesModel.Втемя_роботы_сотрудника">
+              <MappingFragment StoreEntitySet="Втемя роботы сотрудника">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="id_Сотрудника" ColumnName="id_Сотрудника" />
+                <ScalarProperty Name="Начало_работы" ColumnName="Начало работы" />
+                <ScalarProperty Name="Окончание_работы" ColumnName="Окончание работы" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Принятие_на_работу">
+            <EntityTypeMapping TypeName="MyEmployeesModel.Принятие_на_работу">
+              <MappingFragment StoreEntitySet="Принятие на работу">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Дата_принятия_на_работу" ColumnName="Дата принятия на работу" />
+                <ScalarProperty Name="id_Сотрудника" ColumnName="id_Сотрудника" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудники">
+            <EntityTypeMapping TypeName="MyEmployeesModel.Сотрудники">
+              <MappingFragment StoreEntitySet="Сотрудники">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Дата_рождения" ColumnName="Дата рождения" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Увольнение">
+            <EntityTypeMapping TypeName="MyEmployeesModel.Увольнение">
+              <MappingFragment StoreEntitySet="Увольнение">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Дата_увольнения" ColumnName="Дата увольнения" />
+                <ScalarProperty Name="id_Сотрудника" ColumnName="id_Сотрудника" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Фотогафии_Сотрудников">
+            <EntityTypeMapping TypeName="MyEmployeesModel.Фотогафии_Сотрудников">
+              <MappingFragment StoreEntitySet="Фотогафии_Сотрудников">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="id_Сотрудника" ColumnName="id_Сотрудника" />
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

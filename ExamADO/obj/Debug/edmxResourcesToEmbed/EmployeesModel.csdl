@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyEmployeesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Втемя_роботы_сотрудника">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="id_Сотрудника" Type="Int32" Nullable="false" />
+    <Property Name="Начало_работы" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Окончание_работы" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Втемя_роб__id_Со__2E1BDC42" FromRole="Втемя_роботы_сотрудника" ToRole="Сотрудники" />
+  </EntityType>
+  <EntityType Name="Принятие_на_работу">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Дата_принятия_на_работу" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_Сотрудника" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Принятие___id_Со__286302EC" FromRole="Принятие_на_работу" ToRole="Сотрудники" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Должность" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Втемя_роботы_сотрудника" Relationship="Self.FK__Втемя_роб__id_Со__2E1BDC42" FromRole="Сотрудники" ToRole="Втемя_роботы_сотрудника" />
+    <NavigationProperty Name="Принятие_на_работу" Relationship="Self.FK__Принятие___id_Со__286302EC" FromRole="Сотрудники" ToRole="Принятие_на_работу" />
+    <NavigationProperty Name="Увольнение" Relationship="Self.FK__Увольнени__id_Со__2B3F6F97" FromRole="Сотрудники" ToRole="Увольнение" />
+    <NavigationProperty Name="Фотогафии_Сотрудников" Relationship="Self.FK__Фотогафии__id_Со__25869641" FromRole="Сотрудники" ToRole="Фотогафии_Сотрудников" />
+  </EntityType>
+  <EntityType Name="Увольнение">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Дата_увольнения" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_Сотрудника" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Увольнени__id_Со__2B3F6F97" FromRole="Увольнение" ToRole="Сотрудники" />
+  </EntityType>
+  <EntityType Name="Фотогафии_Сотрудников">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="id_Сотрудника" Type="Int32" Nullable="false" />
+    <Property Name="Фото" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Фотогафии__id_Со__25869641" FromRole="Фотогафии_Сотрудников" ToRole="Сотрудники" />
+  </EntityType>
+  <Association Name="FK__Втемя_роб__id_Со__2E1BDC42">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Втемя_роботы_сотрудника" Type="Self.Втемя_роботы_сотрудника" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Втемя_роботы_сотрудника">
+        <PropertyRef Name="id_Сотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Принятие___id_Со__286302EC">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Принятие_на_работу" Type="Self.Принятие_на_работу" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Принятие_на_работу">
+        <PropertyRef Name="id_Сотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Увольнени__id_Со__2B3F6F97">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Увольнение" Type="Self.Увольнение" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Увольнение">
+        <PropertyRef Name="id_Сотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Фотогафии__id_Со__25869641">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Фотогафии_Сотрудников" Type="Self.Фотогафии_Сотрудников" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Фотогафии_Сотрудников">
+        <PropertyRef Name="id_Сотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MyEmployeesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Втемя_роботы_сотрудника" EntityType="Self.Втемя_роботы_сотрудника" />
+    <EntitySet Name="Принятие_на_работу" EntityType="Self.Принятие_на_работу" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+    <EntitySet Name="Увольнение" EntityType="Self.Увольнение" />
+    <EntitySet Name="Фотогафии_Сотрудников" EntityType="Self.Фотогафии_Сотрудников" />
+    <AssociationSet Name="FK__Втемя_роб__id_Со__2E1BDC42" Association="Self.FK__Втемя_роб__id_Со__2E1BDC42">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Втемя_роботы_сотрудника" EntitySet="Втемя_роботы_сотрудника" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Принятие___id_Со__286302EC" Association="Self.FK__Принятие___id_Со__286302EC">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Принятие_на_работу" EntitySet="Принятие_на_работу" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Увольнени__id_Со__2B3F6F97" Association="Self.FK__Увольнени__id_Со__2B3F6F97">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Увольнение" EntitySet="Увольнение" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Фотогафии__id_Со__25869641" Association="Self.FK__Фотогафии__id_Со__25869641">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Фотогафии_Сотрудников" EntitySet="Фотогафии_Сотрудников" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
